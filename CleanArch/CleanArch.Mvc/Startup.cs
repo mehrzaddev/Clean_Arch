@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CleanArch.Infra.Data.Context;
+using CleanArch.Infra.Ioc;
 
 namespace CleanArch.Mvc
 {
@@ -39,7 +40,7 @@ namespace CleanArch.Mvc
                 options.UseSqlServer(Configuration.GetConnectionString("UniversityDBConnection"));
             });
 
-
+            RegisterServices(services);
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -74,6 +75,12 @@ namespace CleanArch.Mvc
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+
+        public static void RegisterServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
         }
     }
 }
