@@ -1,0 +1,17 @@
+﻿@model CleanArch.Application.ViewModels.CourseViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="row">
+        @foreach (var course in Model.Courses)
+        {
+            <div class="card m-3 col-3">
+                <div class="card-header"><h3>@course.Name</h3></div>
+                <img src="@course.ImageUrl" class="card-img-top img-thumbnail" asp-append-version="true" />
+                <div class="card-footer text-center">
+                    @course.Description
+                </div>
+            </div>
+        }
+    </div>
